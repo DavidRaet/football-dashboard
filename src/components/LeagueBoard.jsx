@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 const LeagueBoard = ({leagues}) => {
     const topScorer = [
         {league: "La Liga", player: "Kylian Mbappe"},
@@ -11,6 +12,9 @@ const LeagueBoard = ({leagues}) => {
         {league: 'Japanese J1 League', player: 'Léo Pereira'},
         {league: 'Brazilian Serie A', player: 'Kaio Jorge'}
     ]
+        leagues.forEach((league, index) => {
+        console.log(`League ${index}:`, league);
+    })
     return (
         <div className="league-board">
             <h1>League Overview</h1>
@@ -28,12 +32,14 @@ const LeagueBoard = ({leagues}) => {
                 leagues
                 .filter((league) => league.status === "fulfilled")
                 .map((league) => league.value)
+                .slice(0,7)
                 .map((leagueData) => {
                     return (
-                        
                         <tr key={leagueData.League}>
                             <td>
+                                <Link to={`/leagues/${leagueData.League}`} state={{leagueData : leagueData}}>
                                 {leagueData.League}
+                                </Link>
                             </td>
                             <td>
                                 {leagueData.Country}
@@ -45,7 +51,7 @@ const LeagueBoard = ({leagues}) => {
                                 {leagueData.Standing?.table?.[0]?.strTeam || "Data unavailable"}
                             </td>
                          </tr>
-    
+                    
                     )
                 })
             }

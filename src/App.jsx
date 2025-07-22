@@ -2,7 +2,33 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import LeagueBoard from './components/LeagueBoard';
 import Summary from './components/Summary';
+import BarChart from './components/BarChart';
+import LineChart from './components/LineChart';
 import axios from 'axios';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
+
 
 function App() {
   const [error, setError] = useState(null);
@@ -96,7 +122,8 @@ function App() {
 
   return (
     <div className='whole-page'>
-      <div className="controls">
+        <div className="first-section">
+          <div className="controls">
         <div className="search-section">
         <label htmlFor="search">🔍 Search Leagues:</label>
         <input 
@@ -127,10 +154,17 @@ function App() {
       {isLoading && <p>Loading leagues...</p> }
       {error && <p>Error: {error}</p> }
       <LeagueBoard leagues={filteredLeagues} />
-      <Summary leagues={filteredLeagues} />
-    </div>
+      <Summary leagues={filteredLeagues} /> 
+        </div>
+      <div className="charts-container">
+          <BarChart data={filteredLeagues} />
+          <LineChart data={filteredLeagues} />
+      </div>
+      </div>
+      
   )
   
 }
 
 export default App;
+
