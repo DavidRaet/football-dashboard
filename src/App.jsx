@@ -36,8 +36,10 @@ function App() {
   const [leagues, setLeague] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [userInput, setUserInput] = useState('');
-  const [selectedContinent, setSelectedContinent] = useState('All');
+  const [selectedCountries, setSelectedCountries] = useState([]);
 
+
+  const countries = ['England', 'Spain', 'Germany', 'Italy', 'France', 'Portugal', 'The Netherlands'];
 
   const BASE_URL = 'https://www.thesportsdb.com/api/v1/json/3';
 
@@ -54,10 +56,7 @@ function App() {
         {id: '4332', name: 'Serie A', country: 'Italy'},
         {id: '4334', name: 'Ligue 1', country: 'France'},
         {id: '4344', name: 'Primeira Liga', country: 'Portugal'},
-        {id: '4337', name: 'Dutch Eredivisie', country: 'The Netherlands'},
-        {id: '4633', name: 'Japanese J1 League', country: 'Japan'},
-        {id: '4346', name: 'MLS', country: 'United States'},
-        {id: '4351', name: 'Brazilian Serie A', country: 'Brazil'}    
+        {id: '4337', name: 'Dutch Eredivisie', country: 'The Netherlands'}
         ] 
       console.log("Total leagues to fetch:", leagueCodes.length);
       setIsLoading(true);
@@ -94,27 +93,31 @@ function App() {
 
       const leagueData = league.value;
 
-      const matchesSearches = searchQuery === '' || 
+      const matchesSearch = searchQuery === '' || 
       leagueData.League.toLowerCase().includes(searchQuery.toLowerCase()) || 
       leagueData.Country.toLowerCase().includes(searchQuery.toLowerCase())
-   
+      
+      const matchesCountry = selectedCountries.length === 0 || 
+          selectedCountries.includes(leagueData.Country);
+    
 
-    const continentMap = {
-      'Europe': ['England', 'Spain', 'Germany', 'Italy', 'France', 'Portugal', 'The Netherlands'],
-      'North America': ['United States'],
-      'South America': ['Brazil'],
-      'Asia': ['Japan']
-    };
-
-    let matchesContinent = true; 
-
-    if(selectedContinent !== 'All'){
-      matchesContinent = continentMap[selectedContinent]?.includes(leagueData.Country);
-    }
-
-    return matchesSearches && matchesContinent;
+    return matchesSearch && matchesCountry;
 
    }) || [];
+
+    const handleCountryChange = (country) => {
+      setSelectedCountries(prev => {
+        if(prev.includes(country)){
+          return prev.filter(c => c !== country);
+        } else {
+          return [...prev, country];
+        }
+      });
+    };
+
+    const clearCountryFilter = () => {
+      setSelectedCountries([]);
+    }
 
    const handleSearch = () => {
       if(userInput !== searchQuery) setSearchQuery(userInput);
@@ -136,20 +139,27 @@ function App() {
           <button onClick={handleSearch}>Search</button>
         </div>
       <div className="filter-section">
-        <label htmlFor="continent">🌍Filter by Continent:</label>
-        <select 
-               id="continent"
-               value={selectedContinent}
-               onChange={(e) => setSelectedContinent(e.target.value)}
-        >
+        <label htmlFor="continent">Filter by Country:</label>
+        <div className="checkbox-group">
 
-          <option value="All">All Continents</option>
-          <option value="Europe">Europe</option>
-          <option value="North America">North America</option>
-          <option value="South America">South America</option>
-          <option value="Asia">Asia</option>
-          </select>
-      </div>
+          {countries && countries.map(country => (
+            <label key={country} className='checkbox-label'>
+              <input 
+              type="checkbox"
+              checked={selectedCountries.includes(country)}
+              onChange={() => handleCountryChange(country)}
+              />
+              {country}
+            </label>
+          ))}
+        </div>
+           <div className="checkbox-controls">
+            <button onClick={clearCountryFilter} className='clear-btn'>
+              Clear All
+            </button>
+            <span>Selected: {selectedCountries.length}</span>
+          </div>
+      </div>  
       </div>
       {isLoading && <p>Loading leagues...</p> }
       {error && <p>Error: {error}</p> }

@@ -8,10 +8,13 @@ function Standings() {
 
     return (
         <div className="standings">
+            <div className="standings-header">
             <h2>{leagueName}</h2>
             <Link to={'/'}>
                 go back
             </Link>
+            </div>
+
 
             {leagueData && leagueData.Standing.table ?
                 <table>
@@ -38,7 +41,7 @@ function Standings() {
                                 <tr>
                                     <td>{rank}</td>
                                     <td>
-                                        <img className="team-badges" src={team.strBadge} alt={`Image foe ${team.strTeam}`} />{team.strTeam}
+                                        <img className="team-logo" src={team.strBadge} alt={`Image foe ${team.strTeam}`} />{team.strTeam}
                                     </td>
                                     <td>{matchesPlayed}</td>
                                     <td>{wins}</td>
