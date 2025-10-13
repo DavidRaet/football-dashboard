@@ -1,48 +1,56 @@
-# Web Development Project 5 - *Football Dashboard*
+⚽ Football Dashboard
 
-Submitted by: **David Raet**
+A data-driven web app visualizing global football league stats and top scorers.
 
-This web app: **Football dashboard containing information from 10 different leagues including #1 team from each league and its individual top goal scorer. This website also has a summary statistic for the overall leagues**
+🚀 Overview
 
-Time spent: **6** hours spent in total
+Football Dashboard is an interactive analytics platform that aggregates data from 10 major football leagues. The app highlights each league’s #1 team, their top goal scorer, and key summary statistics across all leagues.
 
-## Required Features
+It’s designed to demonstrate data visualization, dynamic routing, and information hierarchy, all while providing a clean and engaging UI for football fans and data enthusiasts alike.
 
-The following **required** functionality is completed:
+🧩 Features
 
-- [X] **Clicking on an item in the list view displays more details about it**
-  - Clicking on an item in the dashboard list navigates to a detail view for that item
-  - Detail view includes extra information about the item not included in the dashboard view
-  - The same sidebar is displayed in detail view as in dashboard view
-  - *To ensure an accurate grade, your sidebar **must** be viewable when showing the details view in your recording.*
-- [X] **Each detail view of an item has a direct, unique URL link to that item’s detail view page**
-  -  *To ensure an accurate grade, the URL/address bar of your web browser **must** be viewable in your recording.*
-- [X] **The app includes at least two unique charts developed using the fetched data that tell an interesting story**
-  - At least two charts should be incorporated into the dashboard view of the site
-  - Each chart should describe a different aspect of the dataset
+📊 League Overview:
+Displays 10 leagues with quick access to the top team and top scorer from each.
 
-The following **optional** features are implemented:
+🔍 Detail Views:
+Click any league to open a dedicated page with expanded insights and additional stats. Each league has a unique shareable URL for its detail view.
 
-- [X] The site allows users to toggle between different data visualizations
-  - User should be able to use some mechanism to toggle between displaying and hiding visualizations 
+📈 Data Visualizations:
+Two unique, interactive charts illustrate comparative stats across leagues — showcasing performance trends, scoring efficiency, and dominance patterns.
 
-## Video Walkthrough
+🔄 Toggle Visualizations:
+Switch between different types of charts or hide them to focus on raw stats.
 
-Here's a walkthrough of implemented user stories:
+🧭 Consistent Layout:
+A sidebar enables persistent navigation across dashboard and detail views for a unified browsing experience.
+
+⚙️ Tech Stack
+
+Frontend: React
+Visualization: Chart.js (or specify your charting library)
+Concepts: Data fetching, routing, DOM manipulation, and chart rendering
+Design: Responsive layout optimized for visual clarity
+
+💡 Key Learnings
+
+Integrated interactive data visualizations using real football data.
+
+Practiced component reuse through consistent sidebar design.
+
+Implemented URL-based routing for unique detail pages.
+
+Enhanced storytelling through visual analytics and user interactivity.
+
+🖼️ Demo
 
 <img src='https://i.imgur.com/cp9ZPjy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 
-GIF created with Imgur
 
 
-## License
-MIT License
+🪪 License
 
-Copyright (c) 2025 David Raet
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+This project is licensed under the MIT License
+.
+© 2025 David Raet
